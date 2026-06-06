@@ -60,20 +60,27 @@
 辞書データは、仕上トリガー（仕上げ種別）ごとに以下の構造（JSON/YAML）で定義する。
 
 ```typescript
+interface ReferenceSource {
+  type: "standard_spec" | "jass" | "practical_knowledge";
+  doc_id: string;               // 出典ドキュメント識別子 (例: "JASS 26", "PRACTICAL_FATHER")
+  section?: string;             // 章・節・表番号等の詳細位置 (例: "5節 5.3.2")
+  memo?: string;                // 実務知や特記情報に関する補足メモ
+}
+
 interface ProcessStep {
-  step: number;               // 施工工程順序（1始まり）
-  process_name: string;       // 工程名
-  source: string;             // 出典情報（JASS 26、標準仕様書等の章節、または「実務知」）
+  step: number;                 // 施工工程順序（1始まり）
+  process_name: string;         // 工程名
+  sources: ReferenceSource[];   // 根拠となる出典情報のリスト（複数紐付け対応）
   required_by_default: boolean; // デフォルトで常時発生するかどうか
   confidence: "standard" | "conditional" | "to_confirm" | "low"; // 確度ラベル
-  conditions: string | null;  // 発生条件（LLMによる文脈判定用、またはマッピング条件）
+  conditions: string | null;    // 発生条件（LLMによる文脈判定用、またはマッピング条件）
 }
 
 interface FinishTrigger {
-  finish_trigger: string;     // 仕上判定キー（例: "cross"）
-  display_name: string;       // UI用表示名（例: "クロス貼り"）
-  common_spec_ref: string;    // 公共建築工事標準仕様書参照先
-  jass_ref: string;           // JASS規格参照先
+  finish_trigger: string;       // 仕上判定キー（例: "cross"）
+  display_name: string;         // UI用表示名（例: "クロス貼り"）
+  common_spec_ref: string;      // 公共建築工事標準仕様書参照先
+  jass_ref: string;             // JASS規格参照先
   process_chain: ProcessStep[]; // 展開する工程チェーン
 }
 ```
