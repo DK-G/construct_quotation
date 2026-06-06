@@ -1,0 +1,140 @@
+{
+  "finish_trigger": "wood_flooring",
+  "display_name": "木質系フローリング貼り",
+  "common_spec_ref": "公共建築工事標準仕様書 第19章 3節",
+  "jass_ref": "JASS 26 4節",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "下地清掃・点検（不陸調整）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "3.3.1"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "4.2.2"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 2,
+      "process_name": "根太・捨張合板敷き（二重床施工）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "3.3.2"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "直床ではなく、二重床（根太・合板下地）仕様の場合"
+    },
+    {
+      "step": 3,
+      "process_name": "アンダーレイシート（防音・遮音シート）敷き込み",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "マンション等で遮音性能（L値）が求められる場合、またはフローリング直貼り用の緩衝材として必須。"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "遮音性能が求められる床仕様、またはコンクリート直貼りの場合"
+    },
+    {
+      "step": 4,
+      "process_name": "床用接着剤（ウレタン系等）塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "3.3.3"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "4.3.1"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 5,
+      "process_name": "フローリング材割付け・敷き込み・釘打ち留め（ステープル等）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "3.3.4"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "4.3.2"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 6,
+      "process_name": "巾木・見切り材取り付け",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "3.4.1"
+        },
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "壁と床の隙間をふさぎ、見栄えを整えるために実務上は必須。見切り材も含め見積から漏れやすい。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 7,
+      "process_name": "床面養生（養生ボード・テープ敷設）",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "引き渡しまでの他工事によるキズ・汚れ防止のために必須の養生費。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 8,
+      "process_name": "残材処理・清掃分担金",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "フローリングの切り屑や梱包ダンボールの処分。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    }
+  ]
+}
