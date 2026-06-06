@@ -1,0 +1,169 @@
+{
+  "finish_trigger": "cross_cloth",
+  "display_name": "ビニルクロス貼り",
+  "common_spec_ref": "公共建築工事標準仕様書 第19章 5節",
+  "jass_ref": "JASS 26 5節",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "素地調整・ボード確認",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.2"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.2.2"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 2,
+      "process_name": "ジョイント処理（目地補強テープ貼り）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.2(a)"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.3.2.a"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "下地がせっこうボード等、継ぎ目がある場合"
+    },
+    {
+      "step": 3,
+      "process_name": "下塗りパテ処理（目地・ビス頭・面調整）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.2(b)"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.3.2.b"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 4,
+      "process_name": "上塗りパテ処理・平滑研磨",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.2(c)"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.3.2.c"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 5,
+      "process_name": "シーラー（プライマー）塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.3"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.3.3"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "下地吸水性が高い場合、または接着性向上が必要な場合"
+    },
+    {
+      "step": 6,
+      "process_name": "接着剤塗布・クロス貼り",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.3.4"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 26",
+          "section": "5.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 7,
+      "process_name": "コーナー部・ジョイント部ボンドコーク（ジョイントコーク）充填",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "入隅やチリ周りの隙間発生・剥がれ防止のため、実務上は必須工程。見積から抜け落ちやすい。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 8,
+      "process_name": "養生および清掃",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 19章",
+          "section": "5.4.1"
+        },
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "糊等のふき取り、他工事からの汚損防止養生。実務上の必須管理項目。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 9,
+      "process_name": "残材処分（クロス・ボンド屑等）",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "現場の端材撤去・処分費。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    }
+  ]
+}
