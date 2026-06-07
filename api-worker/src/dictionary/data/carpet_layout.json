@@ -1,0 +1,128 @@
+{
+  "finish_trigger": "carpet_layout",
+  "display_name": "カーペット敷き",
+  "common_spec_ref": "19章 7節",
+  "jass_ref": "JASS 26",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "床下地清掃・吸水調整",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.7.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "グリッパー取付・フェルト敷込",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.7.4"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "グリッパー工法（フェルトアンダーレイ工法）の場合",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "直貼り用ボンド接着剤塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.7.4"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "直貼り工法の場合（グリッパー無し）",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "カーペット敷き込み・引張り固定",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.7.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 2,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "ジョイント部熱着テープ溶接処理",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.7.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "幅広の部屋で継ぎ目が発生する場合",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "process_name": "仕上ブラッシング・清掃養生",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "パイルの起毛と施工ゴミの完全清掃を行う"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 6,
+      "constraints": [
+        {
+          "predecessor_step": 5,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}

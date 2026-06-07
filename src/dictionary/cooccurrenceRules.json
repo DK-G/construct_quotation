@@ -1,0 +1,38 @@
+[
+  {
+    "id": "RULE-CF-001",
+    "triggerFinishId": "wood_flooring",
+    "requiredProcessName": "下地清掃・点検（不陸調整）",
+    "alertMessage": "フローリング仕上げが指定されていますが、「下地清掃・不陸調整」工程が除外されています。接着不良や不陸の原因となる恐れがあります。"
+  },
+  {
+    "id": "RULE-CF-002",
+    "triggerFinishId": "wood_flooring",
+    "requiredProcessName": "床用接着剤（ウレタン系等）塗布",
+    "alertMessage": "フローリング仕上げが指定されていますが、「床用接着剤塗布」が除外されています。フローリングの固定不良や浮きの原因となります。"
+  },
+  {
+    "id": "RULE-CR-001",
+    "triggerFinishId": "cross_cloth",
+    "requiredProcessName": "下塗りパテ処理（目地・ビス頭・面調整）",
+    "alertMessage": "クロス貼りが指定されていますが、「下塗りパテ処理（目地・ビス頭・面調整）」が除外されています。ボード継ぎ目の浮きやビス頭の凹凸が表面に出る原因となります。"
+  },
+  {
+    "id": "RULE-CR-002",
+    "triggerFinishId": "cross_cloth",
+    "requiredProcessName": "上塗りパテ処理・平滑研磨",
+    "alertMessage": "クロス貼りが指定されていますが、「上塗りパテ処理・平滑研磨」が除外されています。仕上がりの平滑さが損なわれ、クロスの接着不良や見た目の悪化につながります。"
+  },
+  {
+    "id": "RULE-PT-001",
+    "triggerFinishId": "painting_ep_sop",
+    "requiredProcessName": "養生（非塗装面のマスキング・マスカー保護）",
+    "alertMessage": "塗装仕上げが指定されていますが、「養生（マスキング保護）」が除外されています。周囲の仕上げ材を塗料の飛散から保護する必要があります。"
+  },
+  {
+    "id": "RULE-PT-002",
+    "triggerFinishId": "painting_ep_sop",
+    "requiredProcessName": "下塗り（シーラー・サビ止め塗料塗布）",
+    "alertMessage": "塗装仕上げが指定されていますが、「下塗り（シーラー等の塗布）」が除外されています。塗料の吸い込み防止や接着力向上に必須の工程です。"
+  }
+]

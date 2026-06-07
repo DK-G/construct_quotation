@@ -1,0 +1,107 @@
+{
+  "finish_trigger": "tatami_layout",
+  "display_name": "畳敷き",
+  "common_spec_ref": "19章 8節",
+  "jass_ref": "JASS 26",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "畳下地清掃・点検",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.8.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "下地防湿シート敷き込み",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "木造1階等の床下湿気対策が必要な部屋で計上"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "木造1階かつ特記指定がある場合",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "畳敷き込み・割付け微調整",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.8.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "畳寄せ隙間調整（くさび差し等）",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "壁際や畳同士の隙間・高さのバラつきを抑えるための調整作業"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 3,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "畳面清掃・引き渡し点検",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.8.5"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}

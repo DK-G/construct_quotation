@@ -1,0 +1,6 @@
+name = "construct-quotation-api"
+main = "src/index.ts"
+compatibility_date = "2024-11-12"
+
+[vars]
+# You can place public variables here, but secrets must be added via wrangler secret

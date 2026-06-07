@@ -1,0 +1,128 @@
+{
+  "finish_trigger": "baseboard_setup",
+  "display_name": "巾木取り付け",
+  "common_spec_ref": "19章 内装工事 各節",
+  "jass_ref": "JASS 26",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "巾木取付下地清掃・点検",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "内装共通仕様"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "巾木割付け・留め加工カット",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "木製巾木の場合は出隅・入隅での45度留めカットが必要"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "巾木専用速乾接着剤塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "接着仕様"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 2,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "巾木貼り付け・ピンネイル（隠し釘）仮留め",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "仮留め仕様"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "木製巾木の場合にピンネイル留めが必要。ソフト巾木は圧着のみ。",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 3,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "出隅・入隅コーナー処理",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "ソフト巾木の場合はR形状の折り曲げ、またはコーナーキャップ処理"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "部屋の角部がある場合",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "process_name": "壁・床隙間ボンドコーク（コーキング）充填",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "クロスと巾木の境界に隙間が出ないよう隙間埋めコーキングを行う"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 6,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}

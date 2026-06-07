@@ -23,7 +23,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ja" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            var path = window.location.pathname;
+            if (path === '/tools/construct-quotation') {
+              window.location.replace('/tools/construct-quotation/');
+            } else if (path === '/tools/construct-quotation/admin') {
+              window.location.replace('/tools/construct-quotation/admin/');
+            }
+          })();
+        ` }} />
+      </head>
       <body>{children}</body>
     </html>
   );

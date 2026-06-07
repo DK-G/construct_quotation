@@ -1,0 +1,145 @@
+{
+  "finish_trigger": "painting_ep_sop",
+  "display_name": "塗装（EP/SOP等）",
+  "common_spec_ref": "公共建築工事標準仕様書 第18章 塗装工事",
+  "jass_ref": "JASS 18 塗装工事",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "養生（非塗装面のマスキング・マスカー保護）",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "周囲を汚さないための養生作業。塗装面積が大きい場合、養生の手間が無視できないため必ず計上する。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 2,
+      "process_name": "素地調整（木部・鉄部・ボード等のケレン・清掃）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 18章",
+          "section": "2節（素地調整）"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 18",
+          "section": "3節"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 3,
+      "process_name": "パテ処理（凹凸・継ぎ目・ビス頭平滑化）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 18章",
+          "section": "2.2.5"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 18",
+          "section": "3.5"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "ボード下地、または目立つジョイントやビス凹凸がある場合"
+    },
+    {
+      "step": 4,
+      "process_name": "下塗り（シーラー・サビ止め塗料塗布）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 18章",
+          "section": "3節以降各塗料の仕様"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 18",
+          "section": "各工法の工程表"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 5,
+      "process_name": "中塗り（第1回上塗り）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 18章",
+          "section": "各塗料の仕様"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 18",
+          "section": "各工法の工程表"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 6,
+      "process_name": "上塗り（仕上げ塗り）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "公共建築工事標準仕様書 18章",
+          "section": "各塗料の仕様"
+        },
+        {
+          "type": "jass",
+          "doc_id": "JASS 18",
+          "section": "各工法の工程表"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 7,
+      "process_name": "養生撤去および清掃・タッチアップ",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "養生の撤去、はみ出し箇所の清掃や手直し（タッチアップ）。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    },
+    {
+      "step": 8,
+      "process_name": "廃塗料・空缶・資材の適正処分",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "PRACTICAL_FATHER",
+          "memo": "特別管理産業廃棄物となる塗料かすや有機溶剤空缶等の適切な処分費。"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": null
+    }
+  ]
+}

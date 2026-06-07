@@ -1,0 +1,128 @@
+{
+  "finish_trigger": "vinyl_sheet",
+  "display_name": "ビニル床シート敷き",
+  "common_spec_ref": "19章 6節",
+  "jass_ref": "JASS 26",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "床下地清掃・点検",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.6.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "下地不陸補修（パテ処理）・プライマー塗布",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "下地の小さな凹凸が塩ビシート表面に浮き出るのを防ぐ"
+        }
+      ],
+      "required_by_default": false,
+      "confidence": "conditional",
+      "conditions": "モルタル下地の不陸補修が必要な場合",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "塩ビシート用耐水ボンド接着剤塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.6.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "塩ビ床シート敷き込み・ローラー圧着",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.6.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 3,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "ジョイント（溶接棒使用）溶接・フラットカット処理",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 19章",
+          "section": "19.6.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "ジョイントがある場合に必要",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "process_name": "清掃・樹脂ワックス塗布",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "初期汚れ防止と光沢付与のためワックス仕上げを行う"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 6,
+      "constraints": [
+        {
+          "predecessor_step": 5,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}

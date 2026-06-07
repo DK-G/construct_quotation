@@ -1,0 +1,107 @@
+{
+  "finish_trigger": "plaster_finish",
+  "display_name": "左官仕上げ",
+  "common_spec_ref": "15章 3節",
+  "jass_ref": "JASS 15",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "下地清掃・点検",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 15章",
+          "section": "15.3.3"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "下塗りプライマー塗布",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "下地吸水止めと接着強度向上のため必須"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "ボード下地等の場合",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "中塗り（左官下地層）施工",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 15章",
+          "section": "15.3.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "厚塗り仕様の場合",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 2,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "上塗り仕上げ（珪藻土・漆喰・じゅらく塗等）",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 15章",
+          "section": "15.3.5"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 3,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "左官施工面乾燥養生",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "割れや急激な乾燥を防ぐため、通風を制御した養生が必要"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "finish_trigger": "tile_finish",
+  "display_name": "タイル貼り",
+  "common_spec_ref": "11章 3節",
+  "jass_ref": "JASS 19",
+  "process_chain": [
+    {
+      "step": 1,
+      "process_name": "タイル下地清掃・吸水調整",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 11章",
+          "section": "11.3.3"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 1
+    },
+    {
+      "step": 2,
+      "process_name": "張付け用モルタル塗布",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 11章",
+          "section": "11.3.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "モルタル施工の場合",
+      "sequenceIndex": 2,
+      "constraints": [
+        {
+          "predecessor_step": 1,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "process_name": "タイル張り付け・たたき押え",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 11章",
+          "section": "11.3.4"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 3,
+      "constraints": [
+        {
+          "predecessor_step": 2,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "process_name": "目地モルタル充填",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 11章",
+          "section": "11.3.5"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "目地がある仕様の場合",
+      "sequenceIndex": 4,
+      "constraints": [
+        {
+          "predecessor_step": 3,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "process_name": "タイル表面清掃・拭き取り",
+      "sources": [
+        {
+          "type": "standard_spec",
+          "doc_id": "標準仕様書 11章",
+          "section": "11.3.5"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 5,
+      "constraints": [
+        {
+          "predecessor_step": 4,
+          "type": "after"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "process_name": "タイル施工面養生",
+      "sources": [
+        {
+          "type": "practical_knowledge",
+          "doc_id": "実務施工ノウハウ",
+          "memo": "初期硬化のため3日以上の養生が必要"
+        }
+      ],
+      "required_by_default": true,
+      "confidence": "standard",
+      "conditions": "常に必要",
+      "sequenceIndex": 6,
+      "constraints": [
+        {
+          "predecessor_step": 5,
+          "type": "after"
+        }
+      ]
+    }
+  ]
+}
