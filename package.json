@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pages:build": "next build && node scripts/nest-output.js",
     "start": "next start",
     "lint": "eslint",
     "test": "jest"

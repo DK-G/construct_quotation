@@ -32,3 +32,34 @@
 
 1. 実装作業は `d:\dev\worktrees\construct_quotation\<task-name>\` で行ってください。直接 `repos/` 内を編集してはいけません。
 2. 作業用ワークツリーのルートには、各自の進捗管理用としてローカル管理の `task.md`（`.gitignore` 対象）を配置してください。
+
+---
+
+## デプロイ（Cloudflare Pages / Workers）
+
+本プロジェクトは **静的フロント（Cloudflare Pages）** と **API（Cloudflare Worker）** の2つに分離している。
+
+### 構成の前提
+- フロントは `next.config.ts` で `output: 'export'`（静的書き出し）+ `basePath: '/tools/construct-quotation'`。
+  → 公開URLは **`https://omneralab.com/tools/construct-quotation/`**（ルート直下では動かない）。
+- API は `api-worker/`（Hono）。フロントは環境変数 `NEXT_PUBLIC_API_BASE` で接続先を切替（既定 `/api`）。
+- **フロント内に API ルート（`src/app/api/*`）を置いてはいけない**。`output: 'export'` と矛盾しビルドが失敗する（API は `api-worker/` に集約済み）。
+
+### フロント（Pages）のビルド設定
+| 項目 | 値 |
+|---|---|
+| Build command | `yarn pages:build` |
+| Build output directory | `dist` |
+| 環境変数 | `NEXT_PUBLIC_API_BASE` = WorkerのURL（例: `https://construct-quotation-api.<account>.workers.dev`） |
+
+`yarn pages:build` は `next build` 後に `scripts/nest-output.js` を実行し、`out/` を
+`dist/tools/construct-quotation/` に配置する。`basePath` に合わせてアセットパスを解決させるため。
+
+### API（Worker）のデプロイ
+```
+cd api-worker
+npm install
+npx wrangler secret put OPENAI_API_KEY
+npx wrangler secret put ADMIN_KEY
+npm run deploy
+```
