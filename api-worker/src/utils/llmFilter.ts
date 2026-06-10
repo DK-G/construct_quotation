@@ -1,4 +1,14 @@
-import { GeneratedProcessItem } from './matcher';
+import { ProcessStep } from '../dictionary/types';
+
+// フロント側 src/utils/matcher.ts の GeneratedProcessItem と同形
+// （Worker は静的エクスポートのフロントとコードベースが分離しているためローカル定義）
+export interface GeneratedProcessItem extends ProcessStep {
+  finishTriggerId: string;
+  finishDisplayName: string;
+  roomName: string;
+  location: string;
+  excludeReason?: string;
+}
 
 export interface FilterDecision {
   stepId: string;
@@ -42,7 +52,7 @@ export async function filterProcessesWithLLM(
     return [];
   }
 
-  const effectiveApiKey = apiKey || process.env.OPENAI_API_KEY;
+  const effectiveApiKey = apiKey || (globalThis as any).process?.env?.OPENAI_API_KEY;
 
   if (!effectiveApiKey || !contextText || contextText.trim().length === 0) {
     return filterFallback(processList);
