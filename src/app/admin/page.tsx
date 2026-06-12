@@ -87,7 +87,11 @@ export default function AdminPage() {
           console.error('Failed to save to localStorage:', storageErr);
         }
 
-        setSuccessMsg(`工種「${result.data.display_name} (${result.data.finish_trigger})」のナレッジを自動抽出し、辞書データに即時反映・保存しました！`);
+        if (result.persisted) {
+          setSuccessMsg(`工種「${result.data.display_name} (${result.data.finish_trigger})」のナレッジを自動抽出し、サーバーのマスタ辞書 (D1) へ永続化しました。全ユーザーの見積画面に即時反映されます。`);
+        } else {
+          setSuccessMsg(`工種「${result.data.display_name} (${result.data.finish_trigger})」のナレッジを自動抽出し、このブラウザのローカル辞書に保存しました（サーバー側の D1 が未設定のため、永続化はスキップされました）。`);
+        }
       } else {
         throw new Error("ナレッジの抽出に失敗しました。");
       }

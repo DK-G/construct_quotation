@@ -63,3 +63,29 @@ npx wrangler secret put OPENAI_API_KEY
 npx wrangler secret put ADMIN_KEY
 npm run deploy
 ```
+
+### D1 データベース（フィードバック還流・辞書永続化）
+
+フィードバックログの永続化（`/feedback`）と管理画面からのマスタ辞書永続化
+（`/update-dictionary`, `/extract-knowledge`）には Cloudflare D1 を使用する。
+
+```
+cd api-worker
+# 1. D1 データベースを作成
+npx wrangler d1 create construct-quotation-db
+# 2. 出力された database_id を wrangler.toml の [[d1_databases]] に転記
+# 3. スキーマを適用（ローカル開発時は --remote の代わりに --local）
+npx wrangler d1 execute construct-quotation-db --remote --file=./schema.sql
+# 4. 再デプロイ
+npm run deploy
+```
+
+- D1 バインディング（`DB`）が未設定でも API は従来どおり動作する（永続化のみスキップされ、`/feedback` は stdout ログにフォールバック）。
+- 蓄積されたフィードバックは管理者キー付きで `GET /feedback/summary` から集計取得できる。
+  ローカルからは以下で `feedback_summary.json` に出力できる:
+
+```
+FEEDBACK_API_BASE=https://construct-quotation-api.<account>.workers.dev \
+ADMIN_KEY=<管理者キー> \
+node scripts/feedback-loop.js
+```

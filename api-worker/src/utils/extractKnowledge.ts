@@ -76,7 +76,7 @@ export async function extractAndSaveKnowledge(text: string, apiKey?: string): Pr
     throw new Error("Input text is empty");
   }
 
-  const effectiveApiKey = apiKey || process.env.OPENAI_API_KEY;
+  const effectiveApiKey = apiKey || (globalThis as any).process?.env?.OPENAI_API_KEY;
   let data: FinishTrigger;
 
   if (!effectiveApiKey) {

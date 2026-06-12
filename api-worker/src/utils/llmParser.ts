@@ -1,4 +1,13 @@
-import { ParsedRoom } from './excelParser';
+// フロント側 src/utils/excelParser.ts の ParsedRoom と同形
+// （Worker は静的エクスポートのフロントとコードベースが分離しているためローカル定義）
+export interface ParsedRoom {
+  roomName: string;
+  floor: string;
+  baseboard: string;
+  wall: string;
+  ceiling: string;
+  remarks: string;
+}
 
 /**
  * Interface for OpenAI API response format matching Structured Outputs.
@@ -73,7 +82,7 @@ export async function parseTextWithLLM(text: string, apiKey?: string): Promise<P
     return [];
   }
 
-  const effectiveApiKey = apiKey || process.env.OPENAI_API_KEY;
+  const effectiveApiKey = apiKey || (globalThis as any).process?.env?.OPENAI_API_KEY;
 
   if (!effectiveApiKey) {
     console.warn('[LLM Parser] OpenAI API key is missing. Using static parser fallback.');

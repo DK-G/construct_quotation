@@ -115,3 +115,16 @@
     1. **2層ベクトルRAG (Local/Global RAG)**: WBS定義等の専門用語をLocal RAG、標準仕様書の施工解説長文をGlobal RAGとしてベクトルDB化し、LLMフィルタの除外判定コンテキストとして与える。
 - **帰結**: 人手を一切介さないオンライン自動パース・構造化パイプラインおよびCPM順序制約チェックによる堅牢な「項目出し」高度化ロードマップを決定した。
 
+
+---
+
+### [2026-06-10] 10. フィードバック還流と辞書永続化の Cloudflare D1 移行
+
+- **ステータス**: 承認
+- **背景**: Worker の `/feedback` は受信ログを stdout に出力するだけで永続化されず、管理画面のナレッジ抽出結果も localStorage 保存のみだったため、本番環境（静的Pages + Worker）では「ユーザー判定の正解データへの還流」と「マスタ辞書の1クリック永続化」という Phase 5 / Phase 6 の核心機能が成立していなかった。
+- **決定事項**:
+  - 永続化ストアとして **Cloudflare D1（SQLite）** を採用する（`api-worker/schema.sql`）。集計クエリが必要なフィードバックログにはSQLが適しており、辞書のupsertも同一DBに統合してインフラを単純化する。
+  - `/feedback` はフロントから送信される工程ごとの採用・除外詳細（`details`）を `feedback_events` / `feedback_details` に保存する。旧クライアント形式（processList + excludedIndices）からの導出にも対応し、**D1 バインディング未設定時は従来の stdout ログへフォールバック**して後方互換を維持する。
+  - 管理者キー保護の `GET /feedback/summary` で工程ごとの提案数・除外数・除外率・除外理由を集計返却し、`scripts/feedback-loop.js` は環境変数（`FEEDBACK_API_BASE` + `ADMIN_KEY`）指定でこのリモート集計を利用できるようにする（ローカル JSONL 集計も併存）。
+  - 管理者キー保護の `POST /update-dictionary` を新設し、スキーマ検証（`validateDictionary.ts`）を通過した辞書JSONのみ D1 の `dictionaries` テーブルへ upsert する。`/extract-knowledge` も抽出成功時に自動で D1 へ永続化し、`/get-dictionaries` は静的辞書に D1 のオーバーライドをマージして返す。
+- **帰結**: エクスポート時のユーザー判定が本番環境で恒久的に蓄積され、除外率の高い工程（辞書の偽陽性候補）をオンラインで特定できるデータ還流サイクルが成立した。また管理画面のナレッジ抽出が全ユーザー共有のマスタ辞書として永続化され、ロードマップの「1クリック永続化」要件を満たした。

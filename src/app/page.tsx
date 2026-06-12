@@ -7,6 +7,7 @@ import { parseExcelWorkbook } from '../utils/excelParser';
 import { generateProcessList, GeneratedProcessItem, DICTIONARIES } from '../utils/matcher';
 import { checkCooccurrence, CooccurrenceAlert } from '../utils/cooccurrenceEngine';
 import { validateOrderConstraints, OrderWarning } from '../utils/orderConstraintEngine';
+import { buildFeedbackDetails } from '../utils/feedback';
 import { 
   FileUp, 
   ClipboardCopy, 
@@ -486,7 +487,9 @@ export default function Home() {
           actionType,
           processList,
           excludedIndices: Array.from(excludedIndices),
-          contextText: manualText
+          contextText: manualText,
+          // 工程ごとの採用・除外詳細（Worker 側で D1 に永続化され辞書メンテへ還流される）
+          details: buildFeedbackDetails(processList, excludedIndices)
         }),
       });
     } catch (err) {
