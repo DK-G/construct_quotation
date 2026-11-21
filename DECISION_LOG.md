@@ -128,3 +128,15 @@
   - 管理者キー保護の `GET /feedback/summary` で工程ごとの提案数・除外数・除外率・除外理由を集計返却し、`scripts/feedback-loop.js` は環境変数（`FEEDBACK_API_BASE` + `ADMIN_KEY`）指定でこのリモート集計を利用できるようにする（ローカル JSONL 集計も併存）。
   - 管理者キー保護の `POST /update-dictionary` を新設し、スキーマ検証（`validateDictionary.ts`）を通過した辞書JSONのみ D1 の `dictionaries` テーブルへ upsert する。`/extract-knowledge` も抽出成功時に自動で D1 へ永続化し、`/get-dictionaries` は静的辞書に D1 のオーバーライドをマージして返す。
 - **帰結**: エクスポート時のユーザー判定が本番環境で恒久的に蓄積され、除外率の高い工程（辞書の偽陽性候補）をオンラインで特定できるデータ還流サイクルが成立した。また管理画面のナレッジ抽出が全ユーザー共有のマスタ辞書として永続化され、ロードマップの「1クリック永続化」要件を満たした。
+
+---
+
+### [2026-11-21] 11. 凍結（新しい作業をしない）
+
+- **ステータス**: 承認（オーナー判断）
+- **背景**: 2026-07-20 の commit を最後に動きがなく、実務で今も使われているかは確かめていない。task.md は worktree ローカル運用だったが、その worktree も残っていない。
+- **決定事項**:
+  - **決定**: このリポは凍結とし、新しい作業を入れない。
+  - 公開中の `https://omneralab.com/tools/construct-quotation/` と Worker `construct-quotation-api`・D1 は**そのまま残す**（止める・消すは別の判断）。
+  - 現在地は `roadmap.md` の Phase 見出しのまま。task.md・CURRENT は置かない（D:\dev の `check-doc-contracts.ps1` に理由つきで登録）。
+- **再開の条件**: 実務での利用者が見つかる、または見積業務で使う予定が立ったとき。再開したら、まず公開版が今も動くか（API・D1）を確かめ、task.md に CURRENT を置く。
